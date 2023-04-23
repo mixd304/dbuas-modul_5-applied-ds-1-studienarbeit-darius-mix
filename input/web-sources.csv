@@ -1,0 +1,60 @@
+id,name,url,Format,Sprache
+sz,Süddeutsche Zeitung,https://www.sueddeutsche.de/,Tageszeitung,de
+zeit,Die ZEIT,https://www.zeit.de/,Wochenzeitung,de
+faz,Frankfurter Allgemeine,https://www.faz.net/,Tageszeitung,de
+heise,heise online,https://www.heise.de/,IT,de
+golem,golem.de,https://www.golem.de/,IT,de
+tagesspiegel,Der Tagesspiegel,https://www.tagesspiegel.de/,Tageszeitung,de
+taz,Die Tageszeitung,https://taz.de/,Tageszeitung,de
+abendblatt,Hamburger Abendblatt,https://www.abendblatt.de/,Tageszeitung,de
+berliner,Berliner Zeitung,https://www.berliner-zeitung.de/,Tageszeitung,de
+welt,Welt,https://www.welt.de/,Tageszeitung,de
+medium,Medium,https://medium.com/,Plattform,en
+esslinger,Eßlinger Zeitung,https://www.esslinger-zeitung.de/,Tageszeitung,de
+kdnuggets,KDnuggets,https://www.kdnuggets.com/,Data Science,en
+handelsblatt,Handelsblatt,https://www.handelsblatt.com/,Wirtschaft,de
+ntv,ntv,https://www.n-tv.de/,Sender,de
+pioneer,The Pioneer,https://www.thepioneer.de/,Politik,de
+suedwest,Südwest Presse,https://www.swp.de/,Tageszeitung,de
+t3n,t3n,https://t3n.de/,IT,en
+economist,The Economist,https://www.economist.com/,Wirtschaft,en
+srf,SRF,https://www.srf.ch/,Sender,de
+wef,World Economic Forum,https://www.weforum.org/,Politik,en
+kindly,Live Kindly,https://www.livekindly.co/,Hobby,en
+stuttgarter,Stuttgarter Nachrichten,https://www.stuttgarter-nachrichten.de/,Tageszeitung,de
+atlantic,The Atlantic,https://www.theatlantic.com/,Magazin,en
+netzpolitik,Netzpolitik,https://netzpolitik.org/,IT,de
+towardsds,Towards Data Science,https://towardsdatascience.com/,Data Science,en
+uebermedien,Über Medien,https://uebermedien.de/,Medien,de
+vulture,Vulture,https://www.vulture.com/,Kultur,en
+boerse,Börsenblatt,https://www.boersenblatt.net/,Wirtschaft,de
+buchreport,Buchreport,https://www.buchreport.de/,Medien,de
+54books,54 Books,https://www.54books.de/,Medien,en
+dlf,Deutschlandfunk,https://www.deutschlandfunk.de/,Sender,de
+dw-de,Deutsche Welle (DE),https://www.dw.com/de/,Sender,de
+spiegel,Spiegel Online,https://www.spiegel.de/,Wochenzeitung,de
+cnn,CNN,https://edition.cnn.com/,Sender,en
+bbc,BBC,https://www.bbc.com/,Sender,en
+dhv,Deutscher Gleitschirm- und Drachenflugverband,https://www.dhv.de/,Hobby,de
+mm,Manager Magazin,https://www.manager-magazin.de/,Wirtschaft,de
+stern,Stern,https://www.stern.de/,Wochenzeitung,de
+tagesschau,Tagesschau,https://www.tagesschau.de/,Sender,de
+zvw,Zeitungsverlag Waiblingen,https://www.zvw.de/,Tageszeitung,de
+ieee,IEEE,https://www.ieee.org/,IT,en
+anwaltsverein,Anwaltsverein,https://anwaltverein.de/,Recht,de
+wiwo,Wirtschaftswoche,https://www.wiwo.de/,Wirtschaft,de
+dw-en,Deutsche Welle (EN),https://www.dw.com/,Sender,en
+dav,Deutscher Alpenverein,https://www.alpenverein.de/,Hobby,de
+zwanzig,20 Minuten,https://www.20min.ch/,Tageszeitung,de
+blick,Blick,https://www.blick.ch/,Tageszeitung,de
+nzz,Neue Zürcher Zeitung,https://www.nzz.ch/,Tageszeitung,de
+republik,Die Republik,https://www.republik.ch/,Magazin,de
+ta,Tages Anzeiger,https://www.tagesanzeiger.ch/,Tageszeitung,de
+watson-ch,Watson (CH),https://www.watson.ch/,Online-Zeitung,de
+nau,Nau,https://www.nau.ch/,Online-Zeitung,de
+standard,Der Standard,https://www.derstandard.at/,Tageszeitung,de
+kronen,Kronen Zeitung,https://www.krone.at/,Tageszeitung,de
+kurier,Kurier,https://kurier.at/,Tageszeitung,de
+kleine,Kleine Zeitung,https://www.kleinezeitung.at/,Tageszeitung,de
+watson-de,Watson (DE),https://www.watson.de/,Online-Zeitung,de
+vice-de,Vice (DE),https://www.vice.com/de,Online-Zeitung,de
