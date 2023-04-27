@@ -11,15 +11,15 @@ $ pipenv install -r requirements.txt
 
 #### conda
 ```
-conda init
-conda create --name dbuas-ads-01-studienarbeit-dariusmix --file requirements.txt
-conda info --envs
-conda activate dbuas-ads-01-studienarbeit-dariusmix
+$ conda init
+$ conda create --name dbuas-ads-01-studienarbeit-dariusmix --file requirements.txt
+$ conda info --envs
+$ conda activate dbuas-ads-01-studienarbeit-dariusmix
 ```
 
 zum entfernen der neuen Umgebung aus conda:
 ```
-conda env remove --name dbuas-ads-01-studienarbeit-dariusmix
+$ conda env remove --name dbuas-ads-01-studienarbeit-dariusmix
 ```
 
 Hinweis:
@@ -27,6 +27,6 @@ Sollte es beim anlegen der neuen Umgebung in conda zu einem Fehler kommen, sollt
 
 ## Execute
 ```
-python lib_py/scraper.py
-python lib_py/etl.py
+$ python lib_py/scraper.py
+$ python lib_py/etl_new.py
 ```
