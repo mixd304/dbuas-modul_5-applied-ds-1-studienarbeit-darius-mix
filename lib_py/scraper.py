@@ -3,14 +3,13 @@
 
 # Prepare scraping
 
-import os
+import os, sys
 from datetime import datetime
 import pandas as pd
 import requests
 
-SOURCES_PATH = os.path.join("input", "web-sources.csv")
-STORAGE_PATH = os.path.join("output", "html")
-
+SOURCES_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "input", "web-sources.csv")
+STORAGE_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "output", "data-lake")
 
 def get_now_str():
     now = datetime.now()

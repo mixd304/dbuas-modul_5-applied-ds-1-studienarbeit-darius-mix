@@ -1,20 +1,18 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Data Warehouse
+# ETL
 
 import os, sys
-sys.path.insert(0, os.path.abspath(".."))
-
-from datetime import datetime
 import pandas as pd
-from bs4 import BeautifulSoup
-import sqlite3
-import requests
-import re
+import requests, re
 import logging
+from datetime import datetime
+from bs4 import BeautifulSoup
 from glob import glob
-from lib_py.dwh import conn, main as create_dwh
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+from dwh import conn, main as create_dwh
 
 STORAGE_PATH = os.path.join("output", "data-lake")
 LOG_FOLDER = os.path.join("logs")
@@ -23,11 +21,10 @@ LOG_PATH = os.path.join(LOG_FOLDER, "logs.log")
 if not os.path.exists(LOG_FOLDER):
     os.makedirs(LOG_FOLDER)
 
-LOG_FILE = os.path.join(LOG_FOLDER, "logs.log")
 logging.basicConfig(filename=LOG_PATH, level=logging.INFO,format='%(asctime)s - %(levelname)s - %(message)s')
 
 FILTER_WORDS = re.compile(r'e[ -]?sport(s)?|e[ -]?gaming|gaming', re.IGNORECASE)
-GAMES_LIST = ['Counter-Strike', 'CSGO', 'CS:GO', 'League of Legends', 'Dota 2', 'Overwatch', 'Fortnite', 'Valorant', 'Hearthstone', 'PUBG', 'PlayerUnknown']
+GAMES_LIST = ['Counter-Strike', 'CSGO', 'CS:GO', 'Counter-Strike-2', 'CS2', 'CS:2', 'League of Legends', 'Dota 2', 'Overwatch', 'Fortnite', 'Valorant', 'Hearthstone', 'PUBG', 'PlayerUnknown']
 
 stopwords_url = "https://raw.githubusercontent.com/solariz/german_stopwords/master/german_stopwords_full.txt"
 stopwords_list = requests.get(stopwords_url, allow_redirects=True).text.split("\n")[9:]
@@ -130,16 +127,11 @@ def process_newspaper(newspaper):
     bstext = soup.text
     words = process_html(bstext)
 
-    count_filter = count_filter_words(words)
-    count_games = count_game_mentions(soup)
-    count_word_pair = count_filter_word_pairs(words)
-    word_with_prev_and_next_ten = get_word_with_prev_and_next_ten(words)
-
     result = {
-        "count_filter": count_filter,
-        "count_games": count_games,
-        "count_word_pair": count_word_pair,
-        "word_with_prev_and_next_ten": word_with_prev_and_next_ten,
+        "count_filter": count_filter_words(words),
+        "count_games": count_game_mentions(soup),
+        "count_word_pair": count_filter_word_pairs(words),
+        "word_with_prev_and_next_ten": get_word_with_prev_and_next_ten(words),
     }
 
     return result
@@ -168,12 +160,13 @@ def process_one_logfile(log_file_name=None):
     log_file = pd.read_csv(log_file_name)
 
     for _, newspaper in log_file.iterrows():
-        result = process_newspaper(newspaper)
-        for key in result:
-            if type(result[key]).__name__ == "DataFrame":
-                result[key]["paper_id"] = newspaper["name"]
-                result[key]["date"] = newspaper["date"]
-                result[key].to_sql(key, conn, index=False, if_exists="append")
+        result = process_wrapper(newspaper)
+        if result:
+            for key in result:
+                if type(result[key]).__name__ == "DataFrame":
+                    result[key]["paper_id"] = newspaper["name"]
+                    result[key]["date"] = newspaper["date"]
+                    result[key].to_sql(key, conn, index=False, if_exists="append")
 
 def process_all_logfiles():
     log_files = glob(os.path.join(STORAGE_PATH, "*.csv"))

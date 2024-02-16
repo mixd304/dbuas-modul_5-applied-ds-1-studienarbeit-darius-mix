@@ -1,9 +1,14 @@
-import os, sys
+#!/usr/bin/env python
+# coding: utf-8
+
+# Data Warehouse
+
+import os
+import sys
 import sqlite3
 import pandas as pd
 
-sys.path.insert(0, os.path.abspath(".."))
-SQL_PATH = os.path.join("output", "dwh", "dwh.sqlite3")
+SQL_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "output", "dwh", "dwh.sqlite3")
 
 conn = sqlite3.connect(SQL_PATH)
 c = conn.cursor()
@@ -47,7 +52,7 @@ def create_dim_paper():
                 )''')
 
 def fill_dim_paper():
-    papers = pd.read_csv("input/web-sources.csv")
+    papers = pd.read_csv(os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "input/web-sources.csv"))
     papers.to_sql("DIM_Paper", conn, index=False, if_exists="replace")
 
 def main():

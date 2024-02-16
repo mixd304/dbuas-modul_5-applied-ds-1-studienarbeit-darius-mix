@@ -28,5 +28,5 @@ Sollte es beim anlegen der neuen Umgebung in conda zu einem Fehler kommen, sollt
 ## Execute
 ```
 $ python lib_py/scraper.py
-$ python lib_py/etl_new.py
+$ python lib_py/etl.py
 ```
