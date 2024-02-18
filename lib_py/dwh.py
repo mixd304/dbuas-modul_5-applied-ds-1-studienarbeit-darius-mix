@@ -55,6 +55,18 @@ def fill_dim_paper():
     papers = pd.read_csv(os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "input/web-sources.csv"))
     papers.to_sql("DIM_Paper", conn, index=False, if_exists="replace")
 
+def create_dim_event():
+    c.execute('''CREATE TABLE IF NOT EXISTS DIM_Event
+                (event TEXT PRIMARY KEY,
+                game TEXT,
+                month TEXT,
+                source_link TEXT
+                )''')
+
+def fill_dim_event():
+    papers = pd.read_csv(os.path.join(os.path.abspath(os.path.dirname(__file__)), "..", "input/esports-events.csv"))
+    papers.to_sql("DIM_Event", conn, index=False, if_exists="replace")
+
 def main():
     create_dim_paper()
     create_etl_tables()
