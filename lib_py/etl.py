@@ -97,8 +97,8 @@ def count_filter_word_pairs(words):
     return word_pair_counts_df
 
 
-def get_word_with_prev_and_next_ten(words):
-    word_with_next_and_prev_ten = []
+def get_word_with_prev_and_next_five(words):
+    word_with_next_and_prev_five = []
     for i, filter_word in enumerate(words):
         if FILTER_WORDS.search(filter_word):
             prev_words = []
@@ -109,13 +109,13 @@ def get_word_with_prev_and_next_ten(words):
             for j in range(i-6, i-1):
                 if j >= 0:
                     prev_words.append(words[j])
-            word_with_next_and_prev_ten.append({
+            word_with_next_and_prev_five.append({
                 "word": filter_word,
                 "prev_words": prev_words,
                 "next_words": next_words
             })
 
-    df = pd.DataFrame(word_with_next_and_prev_ten, columns=["word", "prev_words", "next_words"])
+    df = pd.DataFrame(word_with_next_and_prev_five, columns=["word", "prev_words", "next_words"])
     df["prev_words"] = df["prev_words"].apply(convert_list_to_string)
     df["next_words"] = df["next_words"].apply(convert_list_to_string)
     return df
@@ -131,7 +131,7 @@ def process_newspaper(newspaper):
         "count_filter": count_filter_words(words),
         "count_games": count_game_mentions(soup),
         "count_word_pair": count_filter_word_pairs(words),
-        "word_with_prev_and_next_ten": get_word_with_prev_and_next_ten(words),
+        "word_with_prev_and_next_five": get_word_with_prev_and_next_five(words),
     }
 
     return result

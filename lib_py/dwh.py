@@ -34,7 +34,7 @@ def create_etl_tables():
                 other_word TEXT,
                 count INTEGER
                 )''')
-    c.execute('''CREATE TABLE IF NOT EXISTS word_with_prev_and_next_ten
+    c.execute('''CREATE TABLE IF NOT EXISTS word_with_prev_and_next_five
                 (date TEXT,
                 paper_id TEXT,
                 word TEXT,

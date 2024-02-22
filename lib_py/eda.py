@@ -153,7 +153,7 @@ def delete_filter_words(word_list):
     print(query)
     c.execute(query)
 
-    query = "DELETE FROM word_with_prev_and_next_ten WHERE " + \
+    query = "DELETE FROM word_with_prev_and_next_five WHERE " + \
         " OR ".join(["word LIKE '%{}%'".format(word) for word in word_list])
     print(query)
     c.execute(query)
@@ -171,7 +171,7 @@ def update_filter_words(new_word, word_list):
     print(query)
     c.execute(query)
 
-    query = "UPDATE word_with_prev_and_next_ten SET word = '{}' WHERE ".format(new_word) + \
+    query = "UPDATE word_with_prev_and_next_five SET word = '{}' WHERE ".format(new_word) + \
         " OR ".join(["word LIKE '%{}%'".format(word) for word in word_list])
     print(query)
     c.execute(query)
