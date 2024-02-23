@@ -1,5 +1,13 @@
 # dbuas-modul_5-applied-ds-1-studienarbeit-darius-mix
 
+## Informationen zu den Ordnern und Dateien in der Arbeit
+```requirements.txt``` - enthält die benötigten Packages zum Ausführen des Python Codes (wird im Setup verwendet).  <br>
+Ordner ```input``` - enthält die web-sources (Verwendet für den Scraper) und die E-Sports Events CSV.  <br>
+Ordner ```output``` - enthält jeglichen Output des Python Codes, u.a. das Data-Lake (alle HTML-Dateien) und das DWH, also die SQLite-Datei.  <br>
+Ordner ```lib_py``` - enthält jegliche Python Skript-Dateien, die für die Datenerhebung, Speicherung und Analyse benötigt werden.  <br>
+Ordner ```notebooks``` - enthält das Notebook, mit welchem die Datenanalyse durchgeführt wurde.  <br>
+Ordner ```logs``` - enthält die Logs der ```eda.py```.  <br>
+
 ## Setup
 
 ### Install packages

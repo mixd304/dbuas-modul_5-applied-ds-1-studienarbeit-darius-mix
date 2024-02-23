@@ -26,23 +26,24 @@ logging.basicConfig(filename=LOG_PATH, level=logging.INFO,format='%(asctime)s - 
 FILTER_WORDS = re.compile(r'e[ -]?sport(s)?|e[ -]?gaming|gaming', re.IGNORECASE)
 GAMES_LIST = ['Counter-Strike', 'CSGO', 'CS:GO', 'Counter-Strike-2', 'CS2', 'CS:2', 'League of Legends', 'Dota 2', 'Overwatch', 'Fortnite', 'Valorant', 'Hearthstone', 'PUBG', 'PlayerUnknown']
 
-#stopwords_url = "https://raw.githubusercontent.com/solariz/german_stopwords/master/german_stopwords_full.txt"
-#stopwords_list = requests.get(stopwords_url, allow_redirects=True).text.split("\n")[9:]
-
+# Funktion, die eine Liste von Strings in einen einzigen String mit Leerzeichen dazwischen konvertiert
+# wird in get_word_with_prev_and_next_five verwendet, um aus 5 einzelnen Wörter einen String zu machen
 def convert_list_to_string(list):
     return " ".join(list)
 
+# Funktion zum Lesen des Inhalts einer HTML-Datei
 def read_html_file(filename, encoding="utf-8"):
     with open(filename, "r", encoding=encoding) as f:
         text = f.read()
     return text
 
+# Funktion zum Verarbeiten des HTML-Textes
 def process_html(text):
     words = text.replace("\n", " ").lower().split(" ")
-    #words = [i for i in words if len(i) > 1 and i not in stopwords_list]
     words = [i for i in words if len(i) > 1]
     return words
 
+# Funktion zum Zählen und Filtern von Wörtern anhand des regulären Ausdrucks "FILTER_WORDS"
 def count_filter_words(words):
     filtered_words = [word for word in words if FILTER_WORDS.search(word)]
     count = pd.Series(filtered_words).value_counts().to_frame()
@@ -50,6 +51,7 @@ def count_filter_words(words):
     count["word"] = count.index
     return count
 
+# Funktion zum Zählen von Erwähnungen von Videospielen (= in der "GAMES_LIST" definierte Wörter)
 def count_game_mentions(soup):
     game_mentions = {}
 
@@ -72,6 +74,7 @@ def count_game_mentions(soup):
     df = pd.DataFrame(games_count)
     return df
 
+# Funktion zum Zählen und Filtern von Wortpaaren
 def count_filter_word_pairs(words):
     word_counts = {}
     for i, filter_word in enumerate(words):
@@ -97,7 +100,7 @@ def count_filter_word_pairs(words):
     word_pair_counts_df = pd.DataFrame(word_pair_counts)
     return word_pair_counts_df
 
-
+# Funktion zur Extraktion von Wörtern mit den vorherigen und nächsten fünf Wörtern
 def get_word_with_prev_and_next_five(words):
     word_with_next_and_prev_five = []
     for i, filter_word in enumerate(words):
@@ -121,6 +124,7 @@ def get_word_with_prev_and_next_five(words):
     df["next_words"] = df["next_words"].apply(convert_list_to_string)
     return df
 
+# Funktion zum Verarbeiten einer Zeitung
 def process_newspaper(newspaper):
     text = read_html_file(os.path.join(
         "output", newspaper["file_name"]), newspaper["encoding"].lower())
@@ -128,6 +132,7 @@ def process_newspaper(newspaper):
     bstext = soup.text
     words = process_html(bstext)
 
+    # Ausführen verschiedener Analysen und Erstellung eines Ergebnisobjekts
     result = {
         "count_filter": count_filter_words(words),
         "count_games": count_game_mentions(soup),
@@ -137,6 +142,7 @@ def process_newspaper(newspaper):
 
     return result
 
+# Funktion zum Verarbeiten einer Zeitung mit Fehlerbehandlung
 def process_wrapper(newspaper):
     name = newspaper["name"]
     try:
@@ -147,6 +153,7 @@ def process_wrapper(newspaper):
         logging.error('Failt to process %s', name)
         logging.error(e)
 
+# Funktion zum Verarbeiten einer einzelnen Log(csv)-Datei
 def process_one_logfile(log_file_name=None):
     if not log_file_name:
         now_str = datetime.now().strftime("%Y-%m-%d")
@@ -169,15 +176,18 @@ def process_one_logfile(log_file_name=None):
                     result[key]["date"] = newspaper["date"]
                     result[key].to_sql(key, conn, index=False, if_exists="append")
 
+# Funktion zum Verarbeiten aller Logdateien im Speicherort "STORAGE_PATH"
 def process_all_logfiles():
     log_files = glob(os.path.join(STORAGE_PATH, "*.csv"))
     log_files = sorted(log_files)
     for log_file_name in log_files:
         process_one_logfile(log_file_name)
 
+# Hauptfunktion des Programms
 def main():
     create_dwh()
     process_all_logfiles()
 
+# Ruft die main() auf, wenn das Skript über eine Konsole ausgeführt wird
 if __name__ == "__main__":
     main()

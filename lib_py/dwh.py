@@ -14,7 +14,7 @@ conn = sqlite3.connect(SQL_PATH)
 c = conn.cursor()
 
 def create_etl_tables():
-    # Tabelle erstellen, falls sie nicht bereits existiert
+    # Tabellen erstellen, falls sie nicht bereits existiert
     c.execute('''CREATE TABLE IF NOT EXISTS count_filter
                 (date TEXT,
                 paper_id TEXT,
