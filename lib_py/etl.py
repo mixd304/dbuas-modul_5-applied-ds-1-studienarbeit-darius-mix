@@ -26,8 +26,8 @@ logging.basicConfig(filename=LOG_PATH, level=logging.INFO,format='%(asctime)s - 
 FILTER_WORDS = re.compile(r'e[ -]?sport(s)?|e[ -]?gaming|gaming', re.IGNORECASE)
 GAMES_LIST = ['Counter-Strike', 'CSGO', 'CS:GO', 'Counter-Strike-2', 'CS2', 'CS:2', 'League of Legends', 'Dota 2', 'Overwatch', 'Fortnite', 'Valorant', 'Hearthstone', 'PUBG', 'PlayerUnknown']
 
-stopwords_url = "https://raw.githubusercontent.com/solariz/german_stopwords/master/german_stopwords_full.txt"
-stopwords_list = requests.get(stopwords_url, allow_redirects=True).text.split("\n")[9:]
+#stopwords_url = "https://raw.githubusercontent.com/solariz/german_stopwords/master/german_stopwords_full.txt"
+#stopwords_list = requests.get(stopwords_url, allow_redirects=True).text.split("\n")[9:]
 
 def convert_list_to_string(list):
     return " ".join(list)
@@ -39,7 +39,8 @@ def read_html_file(filename, encoding="utf-8"):
 
 def process_html(text):
     words = text.replace("\n", " ").lower().split(" ")
-    words = [i for i in words if len(i) > 1 and i not in stopwords_list]
+    #words = [i for i in words if len(i) > 1 and i not in stopwords_list]
+    words = [i for i in words if len(i) > 1]
     return words
 
 def count_filter_words(words):

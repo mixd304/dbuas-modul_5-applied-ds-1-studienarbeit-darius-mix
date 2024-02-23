@@ -7,3 +7,4 @@ jupyterlab
 requests
 sqlite
 glob2
+textblob

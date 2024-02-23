@@ -74,14 +74,12 @@ def get_filterwords_count_total_by_paper_group_and_month():
     '''
     return pd.read_sql_query(query, con=conn)
 
-def get_filterwords_word_pair_count_total():
+def get_filterwords_with_prev_and_next_five():
     query = ''' 
-        SELECT filter_word
-            ,other_word
-            ,sum(count) AS Count
-        FROM count_word_pair
-        GROUP BY filter_word, other_word
-        ORDER BY sum(count) DESC
+        SELECT word
+            ,prev_words
+            ,next_words
+        FROM word_with_prev_and_next_five
     '''
     return pd.read_sql_query(query, con=conn)
 
