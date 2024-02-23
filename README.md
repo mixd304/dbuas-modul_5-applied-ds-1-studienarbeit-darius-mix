@@ -1,5 +1,9 @@
 # dbuas-modul_5-applied-ds-1-studienarbeit-darius-mix
 
+## Github-Link
+
+Das Repository ist auch über den folgenden Github Link abrufbar: https://github.com/mixd304/dbuas-modul_5-applied-ds-1-studienarbeit-darius-mix.
+
 ## Informationen zu den Ordnern und Dateien in der Arbeit
 ```requirements.txt``` - enthält die benötigten Packages zum Ausführen des Python Codes (wird im Setup verwendet).  <br>
 Ordner ```input``` - enthält die web-sources (Verwendet für den Scraper) und die E-Sports Events CSV.  <br>

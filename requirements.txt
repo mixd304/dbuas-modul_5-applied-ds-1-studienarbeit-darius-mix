@@ -8,3 +8,4 @@ requests
 sqlite
 glob2
 textblob
+textblob_de
